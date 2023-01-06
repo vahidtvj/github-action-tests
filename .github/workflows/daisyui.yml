@@ -6,6 +6,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: get date
+        run: |
+          echo "{now}={(date --rfc-3339=date)}" >> ${GITHUB_ENV}
+          echo ${{ env.now }}
+          
       - name: Clone Github Repo Action
         uses: GuillaumeFalourd/clone-github-repo-action@v2
         with:
@@ -20,10 +25,6 @@ jobs:
           
       - name: zip
         run: cd daisyui/src/docs && zip -r daisyui.zip build/
-        
-      - name: set release date
-        run: |
-          echo "{now}=$(date --rfc-3339=date)" >> ${GITHUB_ENV}
       
       - name: Create Release
         id: create_release
