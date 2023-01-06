@@ -23,7 +23,7 @@ jobs:
         
       - name: set release date
         run: |
-          echo "NOW=$(date --rfc-3339=date)" >> ${GITHUB_ENV}
+          echo "{now}=$(date --rfc-3339=date)" >> ${GITHUB_ENV}
       
       - name: Create Release
         id: create_release
@@ -31,7 +31,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${ NOW }
+          tag_name: ${{ env.now }}
           release_name: DaisyUI
           draft: false
           prerelease: false
