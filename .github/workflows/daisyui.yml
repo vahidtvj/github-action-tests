@@ -20,14 +20,18 @@ jobs:
           
       - name: zip
         run: cd daisyui/src/docs && zip -r daisyui.zip build/
-            
+        
+      - name: set release date
+        run: |
+          echo "NOW=$(date --rfc-3339=date)" >> ${GITHUB_ENV}
+      
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: DaisyUI
+          tag_name: $NOW
           release_name: DaisyUI
           draft: false
           prerelease: false
