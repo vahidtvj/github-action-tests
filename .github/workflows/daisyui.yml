@@ -14,12 +14,12 @@ jobs:
 
       - name: Install and Build
         run: |
-          cd src/docs
+          cd daisyui/src/docs
           npm install
           npm run build
           
       - name: zip
-        run: cd src/docs && zip -r build
+        run: cd daisyui/src/docs && zip -r build
             
       - name: Create Release
         id: create_release
@@ -39,6 +39,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} 
-          asset_path: ./src/docs/build.zip
+          asset_path: ./daisyui/src/docs/build.zip
           asset_name: build.zip
           asset_content_type: application/zip
