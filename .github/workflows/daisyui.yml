@@ -19,7 +19,7 @@ jobs:
           npm run build
           
       - name: zip
-        run: cd daisyui/src/docs && zip -r build
+        run: cd daisyui/src/docs && zip -r build.zip build/
             
       - name: Create Release
         id: create_release
